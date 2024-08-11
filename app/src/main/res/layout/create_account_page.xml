@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userinterface.CreateAccountPage"
+    android:background="@drawable/linear_gradient_background"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_rumah_pucuk"
+        tools:ignore="ContentDescription,MissingConstraints" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Masukkan email anda"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        tools:ignore="HardcodedText,VisualLintBounds" />
+
+    <EditText
+        android:id="@+id/ed_email_from_create_acc"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="50dp"
+        android:hint="Contoh : andy@gmail.com"
+        android:autofillHints="username"
+        android:inputType="text"
+        android:textColorHint="#1B5E20"
+        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Masukkan username anda"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        tools:ignore="HardcodedText,VisualLintBounds" />
+
+    <EditText
+        android:id="@+id/ed_username_from_create_acc"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="50dp"
+        android:hint="Username"
+        android:autofillHints="username"
+        android:inputType="text"
+        android:textColorHint="#1B5E20"
+        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Masukkan password anda"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        tools:ignore="HardcodedText,VisualLintBounds" />
+
+    <EditText
+        android:id="@+id/ed_password_from_create_acc"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="50dp"
+        android:autofillHints="username"
+        android:hint="Minimal 8 karakter"
+        android:inputType="textPassword"
+        android:textColorHint="#1B5E20"
+        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Masukkan kembali email anda"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        tools:ignore="HardcodedText,VisualLintBounds" />
+
+    <EditText
+        android:id="@+id/ed_repassword_from_create_acc"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="50dp"
+        android:hint="Minimal 8 karakter"
+        android:autofillHints="username"
+        android:inputType="textPassword"
+        android:textColorHint="#1B5E20"
+        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="20dp"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btn_back_from_create_acc"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Kembali"
+            tools:ignore="HardcodedText" />
+        <View
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <Button
+            android:id="@+id/btn_kirim_from_create_acc"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Kirim"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+</LinearLayout>
