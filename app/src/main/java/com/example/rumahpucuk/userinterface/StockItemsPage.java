@@ -18,7 +18,7 @@ public class StockItemsPage extends AppCompatActivity {
     public ImageView img_back;
     public LinearLayout layout_add_new_item, layout_update_stocks;
     public SearchView searchView;
-//    public RecyclerView rv_stock;
+    public RecyclerView rv_stock;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,7 +30,7 @@ public class StockItemsPage extends AppCompatActivity {
         layout_update_stocks = findViewById(R.id.layout_update_stock);
         layout_add_new_item = findViewById(R.id.layout_tambah_jenis_barang_baru);
         searchView = findViewById(R.id.searchview_stock_item);
-//        rv_stock = findViewById(R.id.rv_list_stock);
+        rv_stock = findViewById(R.id.rv_list_stock_items);
 
         img_back.setOnClickListener(view -> startActivity(new Intent(StockItemsPage.this, Homepage.class)));
         layout_update_stocks.setOnClickListener(view -> startActivity(new Intent(StockItemsPage.this, UpdateStockItemPage.class)));

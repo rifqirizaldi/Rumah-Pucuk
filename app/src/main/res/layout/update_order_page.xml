@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userinterface.UpdateOrderPage"
+    android:background="@drawable/linear_gradient_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        tools:ignore="UseCompoundDrawables,UselessParent">
+        <ImageView
+            android:id="@+id/img_back_from_update_order"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/arrow_back"
+            android:layout_marginStart="20dp"
+            tools:ignore="ContentDescription" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Pesanan"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchview_update_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:queryHint="Cari Barang Disini"
+        android:background="@drawable/search_view_bg"
+        app:iconifiedByDefault="false"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        tools:ignore="UselessLeaf"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list_order_from_update_order"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            tools:ignore="TextSizeCheck" />
+    </ScrollView>
+
+</LinearLayout>

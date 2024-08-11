@@ -29,9 +29,12 @@ public class Homepage extends AppCompatActivity {
         img_logout = findViewById(R.id.img_logout);
 
         img_logout.setOnClickListener(view -> PopupLogOut());
-        layout_stock.setOnClickListener(view -> startActivity(new Intent(Homepage.this, StockItemsPage.class)));
-
-
+        layout_stock.setOnClickListener(view ->
+                startActivity(new Intent(Homepage.this, StockItemsPage.class)));
+        layout_history.setOnClickListener(view ->
+                startActivity(new Intent(Homepage.this, HistoryPage.class)));
+        layout_update_order.setOnClickListener(view ->
+                startActivity(new Intent(Homepage.this, UpdateOrderPage.class)));
     }
 
     private void PopupLogOut() {
