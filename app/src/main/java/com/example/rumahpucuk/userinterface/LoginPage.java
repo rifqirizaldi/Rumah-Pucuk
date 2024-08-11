@@ -37,8 +37,11 @@ public class LoginPage extends AppCompatActivity {
         txt_create_acc.setOnClickListener(view ->
                 startActivity(new Intent(LoginPage.this, CreateAccountPage.class)));
 
-        btn_login.setOnClickListener(view ->
-                Toast.makeText(LoginPage.this, "Login dulu", Toast.LENGTH_SHORT).show());
+        btn_login.setOnClickListener(view -> loginProcess());
 
+    }
+
+    private void loginProcess() {
+        startActivity(new Intent(LoginPage.this, Homepage.class));
     }
 }
