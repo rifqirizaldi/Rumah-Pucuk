@@ -16,7 +16,6 @@ public class CreateAccountPage extends AppCompatActivity {
 
     public Button btn_back,btn_kirim;
     public EditText ed_username,ed_pass,ed_repass,ed_email;
-    //Change 1
 
     @SuppressLint("MissingInflatedId")
     @Override

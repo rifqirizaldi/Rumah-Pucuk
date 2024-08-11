@@ -47,13 +47,11 @@
             android:gravity="center"
             android:layout_marginStart="80dp"
             tools:ignore="UseCompoundDrawables,UselessParent">
-
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/icon_tambah_jenis_barang"
                 tools:ignore="ContentDescription,ImageContrastCheck" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -71,7 +69,7 @@
             tools:ignore="InefficientWeight" />
 
         <LinearLayout
-            android:id="@+id/layout_tambah_pesanan"
+            android:id="@+id/layout_update_stock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -83,7 +81,6 @@
                 android:layout_height="100dp"
                 android:src="@drawable/icon_tambah_stok"
                 tools:ignore="ContentDescription" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -95,6 +92,26 @@
         </LinearLayout>
     </LinearLayout>
 
-    
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchview_stock_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:queryHint="Cari Barang Disini"
+        android:background="@drawable/search_view_bg"
+        app:iconifiedByDefault="false"/>
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="400dp"-->
+<!--        tools:ignore="UselessLeaf"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginEnd="30dp">-->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_list_stock"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="300dp"-->
+<!--            tools:ignore="TextSizeCheck" />-->
+<!--    </ScrollView>-->
 
 </LinearLayout>

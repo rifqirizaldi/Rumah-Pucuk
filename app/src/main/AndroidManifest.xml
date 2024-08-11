@@ -16,6 +16,12 @@
         android:theme="@style/Theme.RumahPucuk"
         tools:targetApi="31">
         <activity
+            android:name=".userinterface.UpdateStockItemPage"
+            android:exported="false" />
+        <activity
+            android:name=".userinterface.AddNewTypeItemsPage"
+            android:exported="false" />
+        <activity
             android:name=".userinterface.StockItemsPage"
             android:exported="false" />
         <activity
