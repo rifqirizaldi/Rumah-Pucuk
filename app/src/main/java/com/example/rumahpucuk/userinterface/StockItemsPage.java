@@ -5,13 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rumahpucuk.R;
+import com.example.rumahpucuk.adapter.Adapter_rv_stock_items;
+import com.example.rumahpucuk.model_class.Model_stock_items;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class StockItemsPage extends AppCompatActivity {
 
@@ -19,6 +31,9 @@ public class StockItemsPage extends AppCompatActivity {
     public LinearLayout layout_add_new_item, layout_update_stocks;
     public SearchView searchView;
     public RecyclerView rv_stock;
+    DatabaseReference database;
+    Adapter_rv_stock_items adapter;
+    ArrayList<Model_stock_items> list;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,10 +46,41 @@ public class StockItemsPage extends AppCompatActivity {
         layout_add_new_item = findViewById(R.id.layout_tambah_jenis_barang_baru);
         searchView = findViewById(R.id.searchview_stock_item);
         rv_stock = findViewById(R.id.rv_list_stock_items);
+        database = FirebaseDatabase.getInstance().getReference();
 
         img_back.setOnClickListener(view -> startActivity(new Intent(StockItemsPage.this, Homepage.class)));
         layout_update_stocks.setOnClickListener(view -> startActivity(new Intent(StockItemsPage.this, UpdateStockItemPage.class)));
         layout_add_new_item.setOnClickListener(view -> startActivity(new Intent(StockItemsPage.this, AddNewTypeItemsPage.class)));
+
+        //Recyclerview
+        rv_stock.setHasFixedSize(true);
+        rv_stock.setLayoutManager(new LinearLayoutManager(this));
+        list = new ArrayList<>();
+        adapter = new Adapter_rv_stock_items(this, list);
+        rv_stock.setAdapter(adapter);
+
+        //Firebase
+        database.addValueEventListener(new ValueEventListener() {
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.child("stockItems").getChildren()){
+                    String nameItem = dataSnapshot.child("Name Item").getValue(String.class);
+                    String priceItem = dataSnapshot.child("Price").getValue(String.class);
+                    String amountItem = dataSnapshot.child("Amount").getValue(String.class);
+
+                    Model_stock_items stockItems = new Model_stock_items(nameItem,amountItem,priceItem);
+                    list.add(stockItems);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 }

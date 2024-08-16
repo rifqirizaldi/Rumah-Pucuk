@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "924279808081",
+    "project_id": "rumah-pucuk-c1737",
+    "storage_bucket": "rumah-pucuk-c1737.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924279808081:android:c92b21051917bf024f1870",
+        "android_client_info": {
+          "package_name": "com.example.rumahpucuk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOxdQLBGS2ECFDX27jpDceggI5iaf87oQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -16,7 +16,7 @@
         android:maxLines="1"
         android:text="Nama Barang"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="20sp"
         tools:ignore="HardcodedText" />
 
     <ImageView
@@ -54,7 +54,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/img_list_amount_money"
+        android:id="@+id/txt_list_amount_money"
         android:layout_toEndOf="@+id/img_list_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
