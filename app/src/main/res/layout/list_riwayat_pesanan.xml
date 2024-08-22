@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/txt_list_nama_orang_from_history"
+        android:id="@+id/txt_list_nama_orang_from_customer"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -20,21 +20,21 @@
         tools:ignore="HardcodedText" />
 
     <ImageView
-        android:id="@+id/img_list_stock"
+        android:id="@+id/img_list_address"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/txt_list_nama_orang_from_history"
+        android:layout_below="@+id/txt_list_nama_orang_from_customer"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/icon_delivery"
         tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/txt_list_order_status"
-        android:layout_toEndOf="@+id/img_list_stock"
+        android:id="@+id/txt_list_address"
+        android:layout_toEndOf="@+id/img_list_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_list_nama_orang_from_history"
+        android:layout_below="@+id/txt_list_nama_orang_from_customer"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
@@ -44,21 +44,21 @@
         tools:ignore="HardcodedText" />
 
     <ImageView
-        android:id="@+id/img_list_money"
+        android:id="@+id/img_list_phone"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/txt_list_order_status"
+        android:layout_below="@+id/txt_list_address"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/icon_money_history"
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/img_list_amount_money"
-        android:layout_toEndOf="@+id/img_list_money"
+        android:id="@+id/img_list_number_phone"
+        android:layout_toEndOf="@+id/img_list_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_list_order_status"
+        android:layout_below="@+id/txt_list_address"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
@@ -79,10 +79,10 @@
         android:id="@+id/btn_list_detail_from_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_list_nama_orang_from_history"
+        android:layout_below="@+id/txt_list_nama_orang_from_customer"
         android:layout_marginStart="120dp"
         android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/txt_list_order_status"
+        android:layout_toEndOf="@+id/txt_list_address"
         android:text="Detail"
         tools:ignore="HardcodedText" />
 

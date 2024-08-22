@@ -1,6 +1,7 @@
 package com.example.rumahpucuk.userinterface;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -14,9 +15,10 @@ import com.example.rumahpucuk.R;
 
 public class Homepage extends AppCompatActivity {
 
-    public LinearLayout layout_stock,layout_order,layout_history,layout_update_order;
+    public LinearLayout layout_stock,layout_order,layout_history,layout_update_order,layout_add_customer;
     public ImageView img_logout;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class Homepage extends AppCompatActivity {
         layout_history = findViewById(R.id.layout_history);
         layout_update_order = findViewById(R.id.layout_update_pesanan);
         layout_stock = findViewById(R.id.layout_stok_barang);
+        layout_add_customer = findViewById(R.id.layout_add_customer);
         img_logout = findViewById(R.id.img_logout);
 
         img_logout.setOnClickListener(view -> PopupLogOut());
@@ -35,6 +38,10 @@ public class Homepage extends AppCompatActivity {
                 startActivity(new Intent(Homepage.this, HistoryPage.class)));
         layout_update_order.setOnClickListener(view ->
                 startActivity(new Intent(Homepage.this, UpdateOrderPage.class)));
+        layout_order.setOnClickListener(view ->
+               startActivity( new Intent(Homepage.this, AddOrderPage.class)));
+        layout_add_customer.setOnClickListener(view ->
+                startActivity(new Intent(Homepage.this, AddCustomer.class)));
     }
 
     private void PopupLogOut() {
@@ -63,4 +70,6 @@ public class Homepage extends AppCompatActivity {
         // menampilkan alert dialog
         alertDialog.show();
     }
+
+
 }

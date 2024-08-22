@@ -129,4 +129,9 @@ public class LoginPage extends AppCompatActivity {
                     });
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

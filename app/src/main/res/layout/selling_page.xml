@@ -53,22 +53,19 @@
                 android:layout_marginStart="20dp"
                 tools:ignore="HardcodedText,VisualLintBounds" />
 
-            <EditText
-                android:id="@+id/ed_customer_name_from_selling"
+            <Spinner
+                android:id="@+id/spinner_customer_name_from_selling"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginEnd="60dp"
-                android:background="@color/white"
-                android:hint="Isi Disini"
-                android:textColorHint="#757575"
-                tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+                android:background="@drawable/round_white"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pesanan"
+                android:text="Nama Barang Pesanan"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:layout_gravity="center"
@@ -76,23 +73,46 @@
                 android:layout_marginStart="20dp"
                 tools:ignore="HardcodedText,VisualLintBounds" />
 
-            <LinearLayout
-                android:id="@+id/layout_expandle_order"
+            <Spinner
+                android:id="@+id/spinner_item_name_from_selling"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="60dp"
+                android:background="@drawable/round_white"/>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                tools:ignore="UselessLeaf" />
+                android:text="Jumlah Pesanan"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                tools:ignore="HardcodedText,VisualLintBounds" />
 
-            <Button
-                android:id="@+id/btn_add_order_items"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Tambah"
+            <EditText
+                android:id="@+id/ed_amount_order_from_selling"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
-                tools:ignore="HardcodedText" />
+                android:layout_marginEnd="60dp"
+                android:background="@color/white"
+                android:hint="0"
+                android:textColorHint="#757575"
+                android:inputType="number"
+                tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+            <Button
+                android:id="@+id/btn_refresh"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="refresh"
+                tools:ignore="HardcodedText"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -113,31 +133,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="60dp"
                 android:background="@color/white"
-                android:hint="Isi Disini"
-                android:textColorHint="#757575"
-                tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alamat Pengiriman"
+                android:text="0"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="20dp"
-                tools:ignore="HardcodedText,VisualLintBounds" />
-
-            <EditText
-                android:id="@+id/ed_delivery_address_from_selling"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="60dp"
-                android:background="@color/white"
-                android:hint="Isi Disini"
-                android:textColorHint="#757575"
+                android:inputType="number"
+                android:enabled="false"
                 tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
 
             <TextView
@@ -155,10 +154,10 @@
                 android:id="@+id/spiinner_payment_status"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginEnd="60dp"
                 android:layout_marginStart="30dp"
-                android:background="@drawable/round_white"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@drawable/round_white" />
 
             <TextView
                 android:id="@+id/txt_recevied_payment_from_selling"
@@ -181,9 +180,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="60dp"
                 android:background="@color/white"
-                android:hint="Isi disini"
+                android:text="0"
                 android:inputType="number"
-                android:textColorHint="#757575"
+                android:textColor="@color/black"
                 android:visibility="gone"
                 tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
 
@@ -197,7 +196,7 @@
                 android:text="Kirim Data"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
-    </ScrollView>
 
+    </ScrollView>
 
 </LinearLayout>

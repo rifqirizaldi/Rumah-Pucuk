@@ -54,7 +54,7 @@ public class AddNewTypeItemsPage extends AppCompatActivity {
 
     private void executeData(String nameItems, String price, String amount, DatabaseReference database) {
         database = FirebaseDatabase.getInstance().getReference("stockItems");
-        database.child(nameItems).child("Name Item").setValue(nameItems.toLowerCase());
+        database.child(nameItems).child("Name Item").setValue(nameItems.toUpperCase());
         database.child(nameItems).child("Price").setValue(price);
         database.child(nameItems).child("Amount").setValue(amount);
         Toast.makeText(getApplicationContext(),

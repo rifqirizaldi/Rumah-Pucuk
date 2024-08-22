@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".userinterface.UpdateStockItemPage"
+    tools:context=".userinterface.AddNewCustomer"
     android:orientation="vertical"
     android:background="@drawable/linear_gradient_background">
 
@@ -16,7 +16,7 @@
         android:layout_marginTop="20dp"
         tools:ignore="UseCompoundDrawables,UselessParent">
         <ImageView
-            android:id="@+id/img_back_from_update_stock"
+            android:id="@+id/img_back_from_add_new_customer"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/arrow_back"
@@ -25,19 +25,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update Stock"
+            android:text="Tambah Customer Baru"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:layout_gravity="center"
-            android:layout_marginStart="70dp"
+            android:layout_marginStart="10dp"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nama Barang"
+        android:text="Nama Pelanggan"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_gravity="center"
@@ -46,7 +46,7 @@
         tools:ignore="HardcodedText,VisualLintBounds" />
 
     <EditText
-        android:id="@+id/ed_item_name_from_update_stock"
+        android:id="@+id/ed_customer_name_from_add_new_customer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="25dp"
@@ -60,7 +60,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Harga Barang"
+        android:text="Alamat"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_gravity="center"
@@ -69,14 +69,13 @@
         tools:ignore="HardcodedText,VisualLintBounds" />
 
     <EditText
-        android:id="@+id/ed_stock_price_from_update_stock"
+        android:id="@+id/ed_cutomer_address_from_add_new_customer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="60dp"
         android:background="@color/white"
-        android:inputType="number"
         android:hint="Isi Disini"
         android:textColorHint="#757575"
         tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
@@ -84,7 +83,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total Penambahan Stock"
+        android:text="Nomor Telepon"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_gravity="center"
@@ -93,20 +92,20 @@
         tools:ignore="HardcodedText,VisualLintBounds" />
 
     <EditText
-        android:id="@+id/ed_stock_amount_from_update_stock"
+        android:id="@+id/ed_phone_number_from_add_new_customer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="60dp"
         android:background="@color/white"
-        android:inputType="number"
         android:hint="Isi Disini"
+        android:inputType="number"
         android:textColorHint="#757575"
         tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
 
     <Button
-        android:id="@+id/btn_kirim_from_update_stock"
+        android:id="@+id/btn_kirim_from_add_new_customer"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
