@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,9 +40,10 @@ public class Homepage extends AppCompatActivity {
         layout_update_order.setOnClickListener(view ->
                 startActivity(new Intent(Homepage.this, UpdateOrderPage.class)));
         layout_order.setOnClickListener(view ->
-               startActivity( new Intent(Homepage.this, AddOrderPage.class)));
+               startActivity( new Intent(Homepage.this, SellingPage.class)));
         layout_add_customer.setOnClickListener(view ->
                 startActivity(new Intent(Homepage.this, AddCustomer.class)));
+
     }
 
     private void PopupLogOut() {
@@ -70,6 +72,7 @@ public class Homepage extends AppCompatActivity {
         // menampilkan alert dialog
         alertDialog.show();
     }
+
 
 
 }

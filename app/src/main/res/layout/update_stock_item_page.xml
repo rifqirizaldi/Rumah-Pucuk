@@ -34,85 +34,145 @@
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nama Barang"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        tools:ignore="HardcodedText,VisualLintBounds" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Asal Barang"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                tools:ignore="HardcodedText,VisualLintBounds" />
 
-    <EditText
-        android:id="@+id/ed_item_name_from_update_stock"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="60dp"
-        android:background="@color/white"
-        android:hint="Isi Disini"
-        android:textColorHint="#757575"
-        tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+            <EditText
+                android:id="@+id/ed_stock_origin_from_update_stock"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/white"
+                android:hint="Isi Disini"
+                android:textColorHint="#757575"
+                tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Harga Barang"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        tools:ignore="HardcodedText,VisualLintBounds" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alamat"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                tools:ignore="HardcodedText,VisualLintBounds" />
 
-    <EditText
-        android:id="@+id/ed_stock_price_from_update_stock"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="60dp"
-        android:background="@color/white"
-        android:inputType="number"
-        android:hint="Isi Disini"
-        android:textColorHint="#757575"
-        tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
+            <EditText
+                android:id="@+id/ed_origin_address_from_update_stock"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/white"
+                android:hint="Isi Disini"
+                android:textColorHint="#757575"
+                tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Total Penambahan Stock"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        tools:ignore="HardcodedText,VisualLintBounds" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Barang"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                tools:ignore="HardcodedText,VisualLintBounds" />
 
-    <EditText
-        android:id="@+id/ed_stock_amount_from_update_stock"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="60dp"
-        android:background="@color/white"
-        android:inputType="number"
-        android:hint="Isi Disini"
-        android:textColorHint="#757575"
-        tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
+            <Spinner
+                android:id="@+id/spinner_item_name_from_update_stock"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/round_white"/>
 
-    <Button
-        android:id="@+id/btn_kirim_from_update_stock"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_gravity="center"
-        android:text="Kirim Data"
-        tools:ignore="HardcodedText" />
+            <Button
+                android:id="@+id/btn_refresh_from_update_stock"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Refresh"
+                tools:ignore="HardcodedText"
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Satuan Harga Barang"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                tools:ignore="HardcodedText,VisualLintBounds" />
+
+            <EditText
+                android:id="@+id/ed_stock_price_from_update_stock"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/white"
+                android:inputType="number"
+                android:hint="Isi Disini"
+                android:textColorHint="#757575"
+                tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Penambahan Stock"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                tools:ignore="HardcodedText,VisualLintBounds" />
+
+            <EditText
+                android:id="@+id/ed_stock_amount_from_update_stock"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/white"
+                android:inputType="number"
+                android:hint="Isi Disini"
+                android:textColorHint="#757575"
+                tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+            <Button
+                android:id="@+id/btn_kirim_from_update_stock"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="center"
+                android:text="Kirim Data"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.tashila.pleasewait.PleaseWaitDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,6 @@ public class AddOrderPage extends AppCompatActivity {
     public LinearLayout layout_selling, layout_buying;
     DatabaseReference database;
     public ArrayList<String> list_stock_name,list_stock_price,list_stock_amount, list_customer;
-    public PleaseWaitDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

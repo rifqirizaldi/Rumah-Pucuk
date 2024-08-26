@@ -15,6 +15,8 @@ import com.example.rumahpucuk.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Locale;
+
 public class AddNewTypeItemsPage extends AppCompatActivity {
 
     public ImageView img_back;
@@ -54,9 +56,9 @@ public class AddNewTypeItemsPage extends AppCompatActivity {
 
     private void executeData(String nameItems, String price, String amount, DatabaseReference database) {
         database = FirebaseDatabase.getInstance().getReference("stockItems");
-        database.child(nameItems).child("Name Item").setValue(nameItems.toUpperCase());
-        database.child(nameItems).child("Price").setValue(price);
-        database.child(nameItems).child("Amount").setValue(amount);
+        database.child(nameItems.toUpperCase()).child("Name Item").setValue(nameItems.toUpperCase());
+        database.child(nameItems.toUpperCase()).child("Price").setValue(price);
+        database.child(nameItems.toUpperCase()).child("Amount").setValue(amount);
         Toast.makeText(getApplicationContext(),
                 "Penambahan Item berhasil",Toast.LENGTH_SHORT).show();
         startActivity(new Intent(AddNewTypeItemsPage.this, StockItemsPage.class));

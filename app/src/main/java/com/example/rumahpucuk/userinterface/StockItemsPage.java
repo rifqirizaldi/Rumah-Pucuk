@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rumahpucuk.R;
 import com.example.rumahpucuk.adapter.Adapter_rv_stock_items;
+import com.example.rumahpucuk.model_class.Model_history;
 import com.example.rumahpucuk.model_class.Model_stock_items;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -59,6 +60,20 @@ public class StockItemsPage extends AppCompatActivity {
         adapter = new Adapter_rv_stock_items(this, list);
         rv_stock.setAdapter(adapter);
 
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
+
         //Firebase
         database.addValueEventListener(new ValueEventListener() {
 
@@ -82,5 +97,16 @@ public class StockItemsPage extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void filterList(String newText) {
+        ArrayList<Model_stock_items> filteredList = new ArrayList<>();
+        for (Model_stock_items model:list){
+            if (model.getNameItems().toUpperCase().contains(newText.toUpperCase())){
+                filteredList.add(model);
+            }
+        }
+
+        adapter.filterListStockItems(filteredList);
     }
 }

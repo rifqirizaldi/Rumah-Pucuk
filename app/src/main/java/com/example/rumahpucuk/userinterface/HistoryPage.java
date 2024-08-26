@@ -1,25 +1,44 @@
 package com.example.rumahpucuk.userinterface;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rumahpucuk.R;
+import com.example.rumahpucuk.adapter.Adapter_rv_history;
+import com.example.rumahpucuk.model_class.Model_history;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HistoryPage extends AppCompatActivity {
 
     public ImageView img_back;
     public RecyclerView rv_history;
     public SearchView searchView;
-    public Button btn_apply_filter,btn_reset_filter;
+    public Spinner spinner_filter;
+    public DatabaseReference dbSelling, dbPurchasing;
+    public ArrayList<Model_history> list = new ArrayList<>();
+    public ArrayList<String> list_filter = new ArrayList<>();
+    public Adapter_rv_history adapter_rv;
+    public ArrayAdapter adapter_spinner;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,11 +49,100 @@ public class HistoryPage extends AppCompatActivity {
         img_back = findViewById(R.id.img_back_from_history);
         rv_history = findViewById(R.id.rv_list_order_from_history);
         searchView = findViewById(R.id.searchview_history);
-        btn_apply_filter = findViewById(R.id.btn_apply_filter_from_history);
-        btn_reset_filter = findViewById(R.id.btn_reset_filter_from_history);
+        spinner_filter = findViewById(R.id.spinner_filter_from_history);
 
-        img_back.setOnClickListener(view -> startActivity(new Intent(HistoryPage.this, Homepage.class)));
+        readDatabase();
+        img_back.setOnClickListener(view ->
+                startActivity(new Intent(HistoryPage.this, Homepage.class)));
 
+        //Spinner filter
+        list_filter.add("-TANPA FILTER-");
+        list_filter.add("BERDASARKAN PESANAN TERLAMA");
+        list_filter.add("BERDASARKAN PESANAN TERBARU");
+        list_filter.add("TRANSAKSI SATU BULAN TERAKHIR");
+        list_filter.add("TRANSAKSI TIGA BULAN TERAKHIR");
+        adapter_spinner =  new ArrayAdapter(this,android.R.layout.simple_spinner_item,list_filter);
+        adapter_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_filter.setAdapter(adapter_spinner);
 
+        //Recyclerview
+        rv_history.setHasFixedSize(true);
+        rv_history.setLayoutManager(new LinearLayoutManager(this));
+        adapter_rv = new Adapter_rv_history(this, list);
+        rv_history.setAdapter(adapter_rv);
+
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
+
+    }
+
+    private void filterList(String Text) {
+        ArrayList<Model_history> filteredList = new ArrayList<>();
+        for (Model_history model:list){
+            if (model.getName_order().contains(Text.toUpperCase())){
+                filteredList.add(model);
+            }
+        }
+
+        adapter_rv.filterListHistory(filteredList);
+    }
+
+    private void readDatabase() {
+        dbPurchasing = FirebaseDatabase.getInstance().getReference("purchasingActivity");
+        dbPurchasing.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()){
+                    String name_order = ds.child("Order By").getValue(String.class)+"_"+
+                            ds.child("Name Item").getValue(String.class);
+                    String delivery_status = ds.child("Delivery Status").getValue(String.class);
+                    String payment_amount = ds.child("Purchase Price").getValue(String.class);
+                    String payment_status = ds.child("Payment Status").getValue(String.class);
+                    Model_history model = new Model_history(name_order,payment_amount,delivery_status, payment_status);
+                    list.add(model);
+                }
+                adapter_rv.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        dbSelling = FirebaseDatabase.getInstance().getReference("sellingActivity");
+        dbSelling.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()){
+                    String name_order = ds.child("Customer Name").getValue(String.class)+"_"+
+                            ds.child("Order Item Name").getValue(String.class);
+                    String delivery_status = ds.child("Delivery Status").getValue(String.class);
+                    String payment_amount = ds.child("Total Payment").getValue(String.class);
+                    String payment_status = ds.child("Status Payment").getValue(String.class);
+                    Model_history model = new Model_history(name_order,payment_amount,delivery_status, payment_status);
+                    list.add(model);
+                }
+                adapter_rv.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

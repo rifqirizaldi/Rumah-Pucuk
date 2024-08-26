@@ -55,11 +55,15 @@ public class AddNewCustomer extends AppCompatActivity {
     private void addCustomerData(String name, String address, String phone, DatabaseReference database) {
         if (name.isEmpty() || address.isEmpty() || phone.isEmpty()){
             Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
-        }else{
+        } else if (name.contains(".")) {
+            ed_customer_name.setError("Nama tidak boleh ada titik");
+        } else if (address.contains(".")) {
+            ed_customer_address.setError("Alamat tidak boleh ada titik");
+        } else{
             database = FirebaseDatabase.getInstance().getReference("customer");
-            database.child(name).child("Nama").setValue(name);
-            database.child(name).child("Alamat").setValue(address);
-            database.child(name).child("No Telp").setValue(phone);
+            database.child(name.toUpperCase()).child("Nama").setValue(name.toUpperCase());
+            database.child(name.toUpperCase()).child("Alamat").setValue(address);
+            database.child(name.toUpperCase()).child("No Telp").setValue(phone);
             startActivity(new Intent(AddNewCustomer.this, AddCustomer.class));
         }
     }

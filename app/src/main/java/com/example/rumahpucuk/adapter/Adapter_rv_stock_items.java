@@ -1,5 +1,6 @@
 package com.example.rumahpucuk.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rumahpucuk.R;
+import com.example.rumahpucuk.model_class.Model_history;
 import com.example.rumahpucuk.model_class.Model_stock_items;
 
 import java.util.ArrayList;
@@ -22,6 +24,12 @@ public class Adapter_rv_stock_items extends RecyclerView.Adapter<Adapter_rv_stoc
     public Adapter_rv_stock_items(Context context, ArrayList<Model_stock_items> list) {
         this.context = context;
         this.list = list;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterListStockItems(ArrayList<Model_stock_items> filteredList){
+        list = filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull

@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="170dp">
 
-
     <TextView
-        android:id="@+id/txt_list_nama_item_from_history"
+        android:id="@+id/txt_list_nama_item_from_update_order"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -24,18 +23,18 @@
         android:id="@+id/img_list_delivery"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/txt_list_nama_item_from_history"
+        android:layout_below="@+id/txt_list_nama_item_from_update_order"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/icon_delivery"
         tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/txt_list_delivery_status"
+        android:id="@+id/txt_list_delivery_status_from_update_order"
         android:layout_toEndOf="@+id/img_list_delivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_list_nama_item_from_history"
+        android:layout_below="@+id/txt_list_nama_item_from_update_order"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
@@ -55,10 +54,10 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/txt_list_payment_amount"
+        android:id="@+id/txt_list_payment_amount_from_update_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_list_delivery_status"
+        android:layout_below="@+id/txt_list_delivery_status_from_update_order"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -68,23 +67,15 @@
         android:textSize="16sp"
         tools:ignore="HardcodedText" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_alignParentBottom="true"
-        android:background="#808080"/>
-
     <Button
-        android:id="@+id/btn_list_detail_from_history"
+        android:id="@+id/btn_list_detail_from_update_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_list_nama_item_from_history"
+        android:layout_below="@+id/txt_list_nama_item_from_update_order"
         android:layout_marginStart="120dp"
         android:layout_marginTop="40dp"
-        android:layout_toEndOf="@+id/txt_list_payment_amount"
-        android:text="Detail"
+        android:layout_toEndOf="@+id/txt_list_payment_amount_from_update_order"
+        android:text="Edit"
         tools:ignore="HardcodedText" />
 
     <ImageView
@@ -98,16 +89,15 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/txt_list_payment_status"
+        android:id="@+id/txt_list_payment_status_from_update_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/img_status_info"
-        android:layout_below="@id/txt_list_payment_amount"
+        android:layout_below="@id/txt_list_payment_amount_from_update_order"
         android:text="Lunas"
         android:textSize="16sp"
         tools:ignore="HardcodedText" />
-
 
 </RelativeLayout>

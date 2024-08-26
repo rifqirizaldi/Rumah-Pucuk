@@ -29,7 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class SellingPage extends AppCompatActivity {
@@ -38,18 +37,17 @@ public class SellingPage extends AppCompatActivity {
     public Button btn_send,btn_refresh;
     public EditText ed_total_payment,ed_amount_item,ed_recevied_money;
     public TextView txt_recevied_money;
-    public Spinner spinner_payment_status, spinner_customer_name, spinner_item_name;
+    public Spinner spinner_payment_status, spinner_customer_name, spinner_item_name, spinner_delivery_status;
     public DatabaseReference dbCustomer, dbStockItem, dbSelling ;
     public ValueEventListener listener_customer, listener_stockItems;
-    public ArrayList<String> list_payment_status;
+    public ArrayList<String> list_payment_status, list_delivery_status;
     public ArrayList<String> list_customer = new ArrayList<>();
     public ArrayList<String> list_stockItems = new ArrayList<>();
     public ArrayList<String> list_amount = new ArrayList<>();
     public String customer_name, item_name, payment_status,amount, total_payment,total_debt,total_recevied;
     public Integer tem_amount, tem_price;
-    public ArrayAdapter adapter_customer, adapter_stockItems, adapter_payment;
-    public String dateTime, tanggal, tanggal2;
-    public Calendar calendar;
+    public ArrayAdapter adapter_customer, adapter_stockItems, adapter_payment, adapter_delivery;
+    public String dateTime, tanggal, tanggal2, delivery, upperName;
     public SimpleDateFormat simpleDateFormat;
 
     @SuppressLint("MissingInflatedId")
@@ -68,6 +66,7 @@ public class SellingPage extends AppCompatActivity {
         spinner_payment_status = findViewById(R.id.spiinner_payment_status);
         spinner_customer_name = findViewById(R.id.spinner_customer_name_from_selling);
         spinner_item_name = findViewById(R.id.spinner_item_name_from_selling);
+        spinner_delivery_status = findViewById(R.id.spiinner_delivery_status_from_selling);
         dbCustomer = FirebaseDatabase.getInstance().getReference("customer");
         dbStockItem = FirebaseDatabase.getInstance().getReference("stockItems");
 
@@ -149,9 +148,31 @@ public class SellingPage extends AppCompatActivity {
             }
         });
 
+        //Spinner delivery status
+        list_delivery_status = new ArrayList<>();
+        list_delivery_status.add("-BELUM MEMILIH");
+        list_delivery_status.add("BELUM DIKIRIM");
+        list_delivery_status.add("SUDAH DIKIRIM");
+        list_delivery_status.add("SUDAH DIAMBIL OLEH PEMBELI");
+        adapter_delivery = new ArrayAdapter(this,android.R.layout.simple_spinner_item,list_delivery_status);
+        adapter_delivery.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_delivery_status.setAdapter(adapter_delivery);
+        spinner_delivery_status.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                delivery = adapterView.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
 
         img_back.setOnClickListener(view ->
-                startActivity(new Intent(SellingPage.this, AddOrderPage.class)));
+                startActivity(new Intent(SellingPage.this, Homepage.class)));
 
 
         btn_send.setOnClickListener(new View.OnClickListener() {
@@ -160,7 +181,7 @@ public class SellingPage extends AppCompatActivity {
                 total_payment = ed_total_payment.getText().toString();
                 amount = ed_amount_item.getText().toString();
                 total_recevied = ed_recevied_money.getText().toString();
-                processingData(customer_name,item_name,amount,total_payment,payment_status,total_recevied);
+                processingData(customer_name,item_name,amount,total_payment,payment_status,delivery,total_recevied);
             }
         });
 
@@ -175,7 +196,7 @@ public class SellingPage extends AppCompatActivity {
 
     private void processingData(String customer_name, String item_name,
                                 String amount, String total_payment,
-                                String payment_status, String total_recevied) {
+                                String payment_status, String total_recevied, String delivery) {
 
        if (customer_name.equals("AAA")){
            Toast.makeText(this, "Data Customer tidak valid", Toast.LENGTH_SHORT).show();
@@ -185,27 +206,33 @@ public class SellingPage extends AppCompatActivity {
            ed_amount_item.setError("Tidak boleh kosong");
        } else if (payment_status.equals("-BELUM MEMILIH-")) {
            Toast.makeText(this, "Data pembayaran tidak valid", Toast.LENGTH_SHORT).show();
+       } else if (delivery.equals("-BELUM MEMILIH-")) {
+           Toast.makeText(this, "Data status pengiriman tidak valid", Toast.LENGTH_SHORT).show();
        } else if (total_recevied.isEmpty()) {
            ed_recevied_money.setError("Tidak boleh kosong");
        }else {
            tanggal = setDate(); tanggal2 = setDate2();
-           total_debt = String.valueOf(Integer.valueOf(total_payment) - Integer.valueOf(ed_recevied_money.getText().toString()));
+           upperName = customer_name.toUpperCase(); String type = "SELLING";
+           total_debt = String.valueOf(Integer.parseInt(total_payment) - Integer.parseInt(ed_recevied_money.getText().toString()));
            dbSelling = FirebaseDatabase.getInstance().getReference("sellingActivity");
-           dbSelling.child(tanggal2 + "_"+ customer_name).child("Customer Name").setValue(customer_name.toUpperCase());
-           dbSelling.child(tanggal2 + "_"+ customer_name).child("Order Item Name").setValue(item_name.toUpperCase());
-           dbSelling.child(tanggal2 + "_"+ customer_name).child("Date").setValue(tanggal);
-           dbSelling.child(tanggal2 + "_"+ customer_name).child("Amount Item").setValue(amount);
-           dbSelling.child(tanggal2 + "_"+ customer_name).child("Total Payment").setValue(total_payment);
-           dbSelling.child(tanggal2 + "_"+ customer_name).child("Status Payment").setValue(payment_status.toUpperCase());
+           dbSelling.child(tanggal + "_"+ upperName).child("Customer Name").setValue(upperName);
+           dbSelling.child(tanggal + "_"+ upperName).child("Order Item Name").setValue(item_name.toUpperCase());
+           dbSelling.child(tanggal + "_"+ upperName).child("Date").setValue(tanggal);
+           dbSelling.child(tanggal + "_"+ upperName).child("DateKey").setValue(tanggal2);
+           dbSelling.child(tanggal + "_"+ upperName).child("Amount Item").setValue(amount);
+           dbSelling.child(tanggal + "_"+ upperName).child("Total Payment").setValue(total_payment);
+           dbSelling.child(tanggal + "_"+ upperName).child("Status Payment").setValue(payment_status.toUpperCase());
+           dbSelling.child(tanggal + "_"+ upperName).child("Transaction Type").setValue(type);
+           dbSelling.child(tanggal + "_"+ upperName).child("Delivery Status").setValue(delivery);
            if (payment_status.equals("LUNAS")){
-               dbSelling.child(tanggal2 + "_"+ customer_name).child("Total Recevied Payment").setValue(total_payment);
-               dbSelling.child(tanggal2 + "_"+ customer_name).child("Total Debt").setValue("0");
+               dbSelling.child(tanggal + "_"+ upperName).child("Total Recevied Payment").setValue(total_payment);
+               dbSelling.child(tanggal + "_"+ upperName).child("Total Debt").setValue("0");
            }else {
-               dbSelling.child(tanggal2 + "_"+ customer_name).child("Total Recevied Payment").setValue(ed_recevied_money.getText().toString());
-               dbSelling.child(tanggal2 + "_"+ customer_name).child("Total Debt").setValue(total_debt);
+               dbSelling.child(tanggal + "_"+ upperName).child("Total Recevied Payment").setValue(ed_recevied_money.getText().toString());
+               dbSelling.child(tanggal + "_"+ upperName).child("Total Debt").setValue(total_debt);
            }
            updateDataStock(item_name, amount);
-           startActivity(new Intent(getApplicationContext(), AddOrderPage.class));
+           startActivity(new Intent(SellingPage.this, Homepage.class));
        }
 
 
@@ -217,11 +244,12 @@ public class SellingPage extends AppCompatActivity {
                 tem_amount = Integer.valueOf(list_amount.get(a));
                 tem_amount -= Integer.valueOf(amount);
                 dbStockItem = FirebaseDatabase.getInstance().getReference("stockItems");
-                dbStockItem.child(item_name).child("Amount").setValue(String.valueOf(tem_amount));
+                dbStockItem.child(item_name.toUpperCase()).child("Amount").setValue(String.valueOf(tem_amount));
             }
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private String setDate2() {
 //        calendar = Calendar.getInstance();
         simpleDateFormat = new SimpleDateFormat("ddLLLLyyyy");
@@ -229,9 +257,10 @@ public class SellingPage extends AppCompatActivity {
         return  dateTime;
     }
 
+    @SuppressLint("SimpleDateFormat")
     private String setDate() {
 //        calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("ddLLLLyyyy HHmmss aaa z");
+        simpleDateFormat = new SimpleDateFormat("ddLLLLyyyy HHmmss");
         dateTime = simpleDateFormat.format(new Date());
         return  dateTime;
     }
