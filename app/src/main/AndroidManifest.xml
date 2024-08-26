@@ -25,9 +25,6 @@
             android:name=".userinterface.SellingPage"
             android:exported="false" />
         <activity
-            android:name=".userinterface.AddOrderPage"
-            android:exported="false" />
-        <activity
             android:name=".userinterface.UpdateOrderPage"
             android:exported="false" />
         <activity
