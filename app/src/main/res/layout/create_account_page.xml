@@ -34,6 +34,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="50dp"
         android:hint="Contoh : andy@gmail.com"
+        android:singleLine="true"
         android:autofillHints="username"
         android:inputType="text"
         android:textColorHint="#1B5E20"
@@ -58,6 +59,7 @@
         android:layout_marginEnd="50dp"
         android:hint="Username"
         android:autofillHints="username"
+        android:singleLine="true"
         android:inputType="text"
         android:textColorHint="#1B5E20"
         tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
@@ -73,22 +75,39 @@
         android:layout_marginTop="10dp"
         tools:ignore="HardcodedText,VisualLintBounds" />
 
-    <EditText
-        android:id="@+id/ed_password_from_create_acc"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_textPassword"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="50dp"
-        android:autofillHints="username"
-        android:hint="Minimal 8 karakter"
-        android:inputType="textPassword"
-        android:textColorHint="#1B5E20"
-        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_password_from_create_acc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="60dp"
+            android:hint="Password"
+            android:inputType="text"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <EditText-->
+<!--        android:id="@+id/ed_password_from_create_acc"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginEnd="50dp"-->
+<!--        android:autofillHints="username"-->
+<!--        android:hint="Minimal 8 karakter"-->
+<!--        android:inputType="text|textPassword"-->
+<!--        android:singleLine="true"-->
+<!--        android:textColorHint="#1B5E20"-->
+<!--        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />-->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Masukkan kembali email anda"
+        android:text="Masukkan kembali password anda"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -96,17 +115,21 @@
         android:layout_marginTop="10dp"
         tools:ignore="HardcodedText,VisualLintBounds" />
 
-    <EditText
-        android:id="@+id/ed_repassword_from_create_acc"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_textRepassword"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="50dp"
-        android:hint="Minimal 8 karakter"
-        android:autofillHints="username"
-        android:inputType="textPassword"
-        android:textColorHint="#1B5E20"
-        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_repassword_from_create_acc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="60dp"
+            android:hint="Password"
+            android:inputType="text"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Space
         android:layout_width="1dp"

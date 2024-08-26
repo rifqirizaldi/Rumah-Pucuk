@@ -50,7 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="30dp"
-        android:background="@drawable/round_white"/>
+        android:background="@drawable/round_white"
+        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_order_from_history"
@@ -58,6 +59,7 @@
         android:layout_height="400dp"
         tools:ignore="TextSizeCheck"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"/>
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>

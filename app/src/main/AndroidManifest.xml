@@ -9,9 +9,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo_rumah_pucuk"
+        android:icon="@drawable/logo_rumah_pucuk_bg_putih"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_rumah_pucuk_bg_putih"
         android:supportsRtl="true"
         android:theme="@style/Theme.RumahPucuk"
         tools:targetApi="31">

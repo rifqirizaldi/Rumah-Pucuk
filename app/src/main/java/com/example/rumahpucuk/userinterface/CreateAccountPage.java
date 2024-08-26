@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.rumahpucuk.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class CreateAccountPage extends AppCompatActivity {
 
     public Button btn_back,btn_kirim;
-    public EditText ed_username,ed_pass,ed_repass,ed_email;
+    public EditText ed_username,ed_email;
+    public TextInputLayout ed_pass,ed_repass;
     private String user,pass,repass,email;
     private FirebaseAuth fAuth;
     private DatabaseReference database;
@@ -38,8 +41,8 @@ public class CreateAccountPage extends AppCompatActivity {
         btn_kirim = findViewById(R.id.btn_kirim_from_create_acc);
         ed_email = findViewById(R.id.ed_email_from_create_acc);
         ed_username = findViewById(R.id.ed_username_from_create_acc);
-        ed_pass = findViewById(R.id.ed_password_from_create_acc);
-        ed_repass = findViewById(R.id.ed_repassword_from_create_acc);
+        ed_pass = findViewById(R.id.layout_textPassword);
+        ed_repass = findViewById(R.id.layout_textRepassword);
         fAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://rumah-pucuk-c1737-default-rtdb.firebaseio.com/");
@@ -53,8 +56,8 @@ public class CreateAccountPage extends AppCompatActivity {
             public void onClick(View view) {
                 user = ed_username.getText().toString();
                 email = ed_email.getText().toString();
-                pass = ed_pass.getText().toString();
-                repass = ed_repass.getText().toString();
+                pass = String.valueOf(ed_pass.getEditText().getText());
+                repass = String.valueOf(ed_repass.getEditText().getText());
                 createAccount(user, email, pass, repass, database,fAuth);
             }
         });
@@ -63,7 +66,7 @@ public class CreateAccountPage extends AppCompatActivity {
                 startActivity(new Intent(this, LoginPage.class)));
     }
 
-    private void createAccount(String user, String pass, String repass, String email, DatabaseReference database2, FirebaseAuth fAuth) {
+    private void createAccount(String user, String email, String pass, String repass, DatabaseReference database2, FirebaseAuth fAuth) {
         if (user.isEmpty() || pass.isEmpty() || repass.isEmpty() || email.isEmpty()){
             Toast.makeText(getApplicationContext(),
                     "Data belum lengkap",Toast.LENGTH_SHORT).show();
