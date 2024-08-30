@@ -1,7 +1,6 @@
 package com.example.rumahpucuk.userinterface;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -26,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HistoryPage extends AppCompatActivity {
 
@@ -105,12 +103,12 @@ public class HistoryPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()){
-                    String name_order = ds.child("Order By").getValue(String.class)+"_"+
-                            ds.child("Name Item").getValue(String.class);
+                    String name_order = ds.child("Id").getValue(String.class);
                     String delivery_status = ds.child("Delivery Status").getValue(String.class);
                     String payment_amount = ds.child("Purchase Price").getValue(String.class);
                     String payment_status = ds.child("Payment Status").getValue(String.class);
-                    Model_history model = new Model_history(name_order,payment_amount,delivery_status, payment_status);
+                    String transaction_status = ds.child("Transaction Type").getValue(String.class);
+                    Model_history model = new Model_history(name_order,delivery_status, payment_amount, payment_status,transaction_status);
                     list.add(model);
                 }
                 adapter_rv.notifyDataSetChanged();
@@ -128,12 +126,12 @@ public class HistoryPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()){
-                    String name_order = ds.child("Customer Name").getValue(String.class)+"_"+
-                            ds.child("Order Item Name").getValue(String.class);
+                    String name_order = ds.child("Id").getValue(String.class);
                     String delivery_status = ds.child("Delivery Status").getValue(String.class);
                     String payment_amount = ds.child("Total Payment").getValue(String.class);
                     String payment_status = ds.child("Status Payment").getValue(String.class);
-                    Model_history model = new Model_history(name_order,payment_amount,delivery_status, payment_status);
+                    String transaction_status = ds.child("Transaction Type").getValue(String.class);
+                    Model_history model = new Model_history(name_order,delivery_status, payment_amount, payment_status,transaction_status);
                     list.add(model);
                 }
                 adapter_rv.notifyDataSetChanged();

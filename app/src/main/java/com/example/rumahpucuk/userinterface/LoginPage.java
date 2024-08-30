@@ -1,9 +1,7 @@
 package com.example.rumahpucuk.userinterface;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,16 +9,10 @@ import android.widget.Toast;
 
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rumahpucuk.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -46,49 +38,27 @@ public class LoginPage extends AppCompatActivity {
         //Firebase
         fAuth = FirebaseAuth.getInstance();
 
-//        txt_reset_pass.setOnClickListener(view ->
-//                startActivity(new Intent(LoginPage.this, ResetPasswordPage.class)));
-
         //Firebase
-        txt_reset_pass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText resetemail = new EditText(v.getContext());
-                AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
-                passwordResetDialog.setTitle("Reset Password");
-                passwordResetDialog.setMessage("Enter Your Email");
-                passwordResetDialog.setView(resetemail);
+        txt_reset_pass.setOnClickListener(v -> {
+            EditText resetemail = new EditText(v.getContext());
+            AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+            passwordResetDialog.setTitle("Reset Password");
+            passwordResetDialog.setMessage("Enter Your Email");
+            passwordResetDialog.setView(resetemail);
 
-                passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String mail = resetemail.getText().toString();
-                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(LoginPage.this,
-                                        "Link telah dikirim ke email", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(LoginPage.this,
-                                        "Error! Link tidak dapat dikirim"+e.getMessage(),
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
+            passwordResetDialog.setPositiveButton("Yes", (dialog, which) -> {
+                String mail = resetemail.getText().toString();
+                fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(unused -> Toast.makeText(LoginPage.this,
+                        "Link telah dikirim ke email", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(LoginPage.this,
+                                "Error! Link tidak dapat dikirim"+e.getMessage(),
+                                Toast.LENGTH_SHORT).show());
+            });
 
-                passwordResetDialog.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+            passwordResetDialog.setNegativeButton("Tidak", (dialog, which) -> {
 
-                    }
-                });
+            });
 
-                passwordResetDialog.create().show();
-            }
+            passwordResetDialog.create().show();
         });
 
         txt_create_acc.setOnClickListener(view ->
@@ -96,13 +66,10 @@ public class LoginPage extends AppCompatActivity {
 
 
         //Firebase
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                user = ed_username.getText().toString();
-                password = ed_password.getText().toString();
-                loginProcess(user, password, fAuth);
-            }
+        btn_login.setOnClickListener(view -> {
+            user = ed_username.getText().toString();
+            password = ed_password.getText().toString();
+            loginProcess(user, password, fAuth);
         });
     }
 
@@ -114,24 +81,16 @@ public class LoginPage extends AppCompatActivity {
                     "Username atau Password belum lengkap",Toast.LENGTH_SHORT).show();
         }else{
             fAuth.signInWithEmailAndPassword(user,password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(LoginPage.this,
-                                        "Login Successfull", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(LoginPage.this, Homepage.class));
-                            }else{
-                                Toast.makeText(LoginPage.this, "Error!!" +
-                                        task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()){
+                            Toast.makeText(LoginPage.this,
+                                    "Login Successfull", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginPage.this, Homepage.class));
+                        }else{
+                            Toast.makeText(LoginPage.this, "Error!!" +
+                                    task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 }

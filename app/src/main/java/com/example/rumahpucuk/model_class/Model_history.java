@@ -1,13 +1,14 @@
 package com.example.rumahpucuk.model_class;
 
 public class Model_history {
-    public String name_order, payment_amount, delivery_status, payment_status;
+    public String name_order, delivery_status, payment_amount, payment_status, transaction_type;
 
-    public Model_history(String name_order, String payment_amount, String delivery_status, String payment_status) {
+    public Model_history(String name_order, String delivery_status, String payment_amount, String payment_status, String transaction_type) {
         this.name_order = name_order;
-        this.payment_amount = payment_amount;
         this.delivery_status = delivery_status;
+        this.payment_amount = payment_amount;
         this.payment_status = payment_status;
+        this.transaction_type = transaction_type;
     }
 
     public String getName_order() {
@@ -40,5 +41,13 @@ public class Model_history {
 
     public void setPayment_status(String payment_status) {
         this.payment_status = payment_status;
+    }
+
+    public String getTransaction_type() {
+        return transaction_type;
+    }
+
+    public void setTransaction_type(String transaction_type) {
+        this.transaction_type = transaction_type;
     }
 }

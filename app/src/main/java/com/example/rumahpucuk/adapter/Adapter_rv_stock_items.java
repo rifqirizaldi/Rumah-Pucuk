@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rumahpucuk.R;
-import com.example.rumahpucuk.model_class.Model_history;
 import com.example.rumahpucuk.model_class.Model_stock_items;
 
 import java.util.ArrayList;

@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="170dp">
+    android:layout_height="220dp">
 
 
     <TextView
         android:id="@+id/txt_list_nama_item_from_history"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
@@ -31,7 +31,7 @@
         tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/txt_list_delivery_status"
+        android:id="@+id/txt_list_delivery_status_from_history"
         android:layout_toEndOf="@+id/img_list_delivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,10 +55,10 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/txt_list_payment_amount"
+        android:id="@+id/txt_list_payment_amount_from_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_list_delivery_status"
+        android:layout_below="@+id/txt_list_delivery_status_from_history"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -76,16 +76,16 @@
         android:layout_alignParentBottom="true"
         android:background="#808080"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_list_detail_from_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/txt_list_nama_item_from_history"
-        android:layout_marginStart="120dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="40dp"
-        android:layout_toEndOf="@+id/txt_list_payment_amount"
-        android:text="Detail"
-        tools:ignore="HardcodedText" />
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/icon_info"
+        tools:ignore="ContentDescription,HardcodedText,SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/img_status_info"
@@ -98,16 +98,38 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/txt_list_payment_status"
+        android:id="@+id/txt_list_payment_status_from_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/img_status_info"
-        android:layout_below="@id/txt_list_payment_amount"
+        android:layout_below="@id/txt_list_payment_amount_from_history"
         android:text="Lunas"
         android:textSize="16sp"
         tools:ignore="HardcodedText" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/img_status_info"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/icon_status_transaksi"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/txt_list_transaction_status_from_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_list_payment_status_from_history"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="Penjualan"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

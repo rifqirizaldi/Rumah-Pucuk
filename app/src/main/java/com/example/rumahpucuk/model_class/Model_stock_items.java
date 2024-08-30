@@ -1,12 +1,10 @@
 package com.example.rumahpucuk.model_class;
 
-import java.io.Serializable;
-
 public class Model_stock_items {
     private String nameItems;
     private String price,amount;
 
-    public Model_stock_items(){}
+//    public Model_stock_items(){}
 
     public Model_stock_items(String nameItems,String amount, String price){
         this.nameItems = nameItems;

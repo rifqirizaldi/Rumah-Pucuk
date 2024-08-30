@@ -54,6 +54,7 @@
         android:layout_marginEnd="60dp"
         android:background="@color/white"
         android:hint="Isi Disini"
+        android:maxLines="1"
         android:textColorHint="#757575"
         tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
 
@@ -78,6 +79,7 @@
         android:background="@color/white"
         android:hint="Isi Disini"
         android:textColorHint="#757575"
+        android:maxLines="1"
         tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
 
     <TextView
@@ -102,6 +104,7 @@
         android:hint="Isi Disini"
         android:inputType="number"
         android:textColorHint="#757575"
+        android:maxLines="1"
         tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
 
     <Button

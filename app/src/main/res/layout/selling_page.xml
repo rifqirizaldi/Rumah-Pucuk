@@ -102,6 +102,7 @@
                 android:layout_marginEnd="60dp"
                 android:background="@color/white"
                 android:hint="0"
+                android:maxLines="1"
                 android:textColorHint="#757575"
                 android:inputType="number"
                 tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
@@ -134,6 +135,7 @@
                 android:layout_marginEnd="60dp"
                 android:background="@color/white"
                 android:text="0"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 android:inputType="number"
                 android:enabled="false"
@@ -202,6 +204,7 @@
                 android:layout_marginEnd="60dp"
                 android:background="@color/white"
                 android:text="0"
+                android:maxLines="1"
                 android:inputType="number"
                 android:textColor="@color/black"
                 android:visibility="gone"

@@ -2,23 +2,26 @@ package com.example.rumahpucuk.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rumahpucuk.R;
 import com.example.rumahpucuk.model_class.Model_history;
+import com.example.rumahpucuk.userinterface.DetailPurchasingPage;
+import com.example.rumahpucuk.userinterface.DetailSellingPage;
 
 
 import java.util.ArrayList;
 
 public class Adapter_rv_history extends RecyclerView.Adapter<Adapter_rv_history.MyViewHolder> {
+    public String id, transaction_type;
     Context context;
     ArrayList<Model_history> list;
 
@@ -47,7 +50,27 @@ public class Adapter_rv_history extends RecyclerView.Adapter<Adapter_rv_history.
         holder.delivery_status.setText(model.getDelivery_status());
         holder.payment_status.setText(model.getPayment_status());
         holder.payment_amount.setText(model.getPayment_amount());
-        holder.btn_detail.setOnClickListener(view -> Toast.makeText(context, "Button yang ditekan", Toast.LENGTH_SHORT).show());
+        holder.transaction_type.setText(model.getTransaction_type());
+        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                id = model.getName_order();
+                transaction_type = model.getTransaction_type();
+                passData(view ,id, transaction_type);
+            }
+        });
+    }
+
+    private void passData(View view, String id, String transaction_type) {
+        if (transaction_type.equals("PURCHASING")){
+            Intent intent = new Intent(view.getContext(), DetailPurchasingPage.class);
+            intent.putExtra("Id", id);
+            view.getContext().startActivity(intent);
+        }else {
+            Intent intent = new Intent(view.getContext(), DetailSellingPage.class);
+            intent.putExtra("Id", id);
+            view.getContext().startActivity(intent);
+        }
     }
 
     @Override
@@ -56,14 +79,15 @@ public class Adapter_rv_history extends RecyclerView.Adapter<Adapter_rv_history.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView name_order,payment_amount,payment_status, delivery_status;
-        Button btn_detail;
+        TextView name_order,payment_amount,payment_status, delivery_status, transaction_type;
+        ImageButton btn_detail;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name_order = itemView.findViewById(R.id.txt_list_nama_item_from_history);
-            payment_amount = itemView.findViewById(R.id.txt_list_payment_amount);
-            payment_status = itemView.findViewById(R.id.txt_list_payment_status);
-            delivery_status = itemView.findViewById(R.id.txt_list_delivery_status);
+            payment_amount = itemView.findViewById(R.id.txt_list_payment_amount_from_history);
+            payment_status = itemView.findViewById(R.id.txt_list_payment_status_from_history);
+            delivery_status = itemView.findViewById(R.id.txt_list_delivery_status_from_history);
+            transaction_type = itemView.findViewById(R.id.txt_list_transaction_status_from_history);
             btn_detail = itemView.findViewById(R.id.btn_list_detail_from_history);
         }
     }

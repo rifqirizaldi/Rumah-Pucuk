@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,7 +48,7 @@ public class Adapter_rv_customer extends RecyclerView.Adapter<Adapter_rv_custome
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView name,address,phone;
-        Button btn_edit,btn_detail;
+        ImageButton btn_edit,btn_detail;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

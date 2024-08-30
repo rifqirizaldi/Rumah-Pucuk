@@ -30,7 +30,7 @@ import java.util.Date;
 public class UpdateStockItemPage extends AppCompatActivity {
 
     public ImageView img_back;
-    public EditText ed_amount,ed_price,ed_stock_origin, ed_origin_address;
+    public EditText ed_amount,ed_price,ed_stock_origin, ed_origin_address, ed_contact;
     public Button btn_send, btn_refresh;
     public Spinner spinner_stockItems;
     public DatabaseReference db, dbPurchasing;
@@ -39,9 +39,9 @@ public class UpdateStockItemPage extends AppCompatActivity {
     public ArrayList<String> list_amount = new ArrayList<>();
     public ArrayList<String> list_price = new ArrayList<>();
     public ArrayAdapter adapter;
-    public String value, amount, price, stockOrigin, originAddress;
+    public String value, amount, price, stockOrigin, originAddress, originContact;
     public Integer temp_amout, total_price;
-    public String dateTime, tanggal, tanggal2, upperName;
+    public String dateTime, tanggal, tanggal2;
     public SimpleDateFormat simpleDateFormat;
 
     @SuppressLint("MissingInflatedId")
@@ -56,6 +56,7 @@ public class UpdateStockItemPage extends AppCompatActivity {
         ed_price = findViewById(R.id.ed_stock_price_from_update_stock);
         ed_origin_address = findViewById(R.id.ed_origin_address_from_update_stock);
         ed_stock_origin = findViewById(R.id.ed_stock_origin_from_update_stock);
+        ed_contact = findViewById(R.id.ed_origin_contact_from_update_stock);
         btn_send = findViewById(R.id.btn_kirim_from_update_stock);
         btn_refresh = findViewById(R.id.btn_refresh_from_update_stock);
         db = FirebaseDatabase.getInstance().getReference("stockItems");
@@ -82,21 +83,14 @@ public class UpdateStockItemPage extends AppCompatActivity {
                 startActivity(new Intent(
                         UpdateStockItemPage.this, StockItemsPage.class)));
 
-        btn_refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkPrice(value);
-            }
-        });
-        btn_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                amount = ed_amount.getText().toString();
-                price = ed_price.getText().toString();
-                stockOrigin = ed_stock_origin.getText().toString();
-                originAddress = ed_origin_address.getText().toString();
-                executeData(amount, value, price, stockOrigin, originAddress);
-            }
+        btn_refresh.setOnClickListener(view -> checkPrice(value));
+        btn_send.setOnClickListener(view -> {
+            amount = ed_amount.getText().toString();
+            price = ed_price.getText().toString();
+            stockOrigin = ed_stock_origin.getText().toString();
+            originAddress = ed_origin_address.getText().toString();
+            originContact = ed_contact.getText().toString();
+            executeData(amount, value, price, stockOrigin, originAddress, originContact);
         });
     }
 
@@ -115,9 +109,9 @@ public class UpdateStockItemPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()){
-                    list_stockItems.add(ds.child("Name Item").getValue().toString());
-                    list_amount.add(ds.child("Amount").getValue().toString());
-                    list_price.add(ds.child("Price").getValue().toString());
+                    list_stockItems.add(ds.child("Name Item").getValue(String.class));
+                    list_amount.add(ds.child("Amount").getValue(String.class));
+                    list_price.add(ds.child("Price").getValue(String.class));
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -129,28 +123,32 @@ public class UpdateStockItemPage extends AppCompatActivity {
         });
     }
 
-    private void executeData(String amount, String value, String price, String stockOrigin, String originAddress) {
+    private void executeData(String amount, String value, String price, String stockOrigin, String originAddress, String originContact) {
         for (int a=0; a<list_stockItems.size();a++){
             if (list_stockItems.get(a).equals(value)){
                 tanggal = setDate(); tanggal2 = setDate2();
                 temp_amout = Integer.valueOf(list_amount.get(a));
-                temp_amout += Integer.valueOf(amount);
-                total_price = Integer.valueOf(amount) * Integer.valueOf(price);
+                temp_amout += Integer.parseInt(amount);
+                total_price = Integer.parseInt(amount) * Integer.parseInt(price);
 
                 db = FirebaseDatabase.getInstance().getReference("stockItems");
                 db.child(value.toUpperCase()).child("Amount").setValue(String.valueOf(temp_amout));
                 db.child(value.toUpperCase()).child("Price").setValue(price);
 
                 dbPurchasing = FirebaseDatabase.getInstance().getReference("purchasingActivity");
-                dbPurchasing.child(tanggal2+"_ADMIN").child("Supplier Name").setValue(stockOrigin);
-                dbPurchasing.child(tanggal2+"_ADMIN").child("Supplier Address").setValue(originAddress);
-                dbPurchasing.child(tanggal2+"_ADMIN").child("Name Item").setValue(value);
-                dbPurchasing.child(tanggal2+"_ADMIN").child("Order By").setValue("ADMIN");
-                dbPurchasing.child(tanggal2+"_ADMIN").child("Purchase Price").setValue(String.valueOf(total_price));
-                dbPurchasing.child(tanggal2+"_ADMIN").child("Date Purchase").setValue(tanggal);
-                dbPurchasing.child(tanggal2+"_ADMIN").child("DateKey").setValue(tanggal2);
-                dbPurchasing.child(tanggal2+"_ADMIN").child("Amount").setValue(amount);
-                dbPurchasing.child(tanggal2+"_ADMIN").child("Transaction Type").setValue("PURCHASING");
+                dbPurchasing.child(tanggal+"_ADMIN").child("Id").setValue(tanggal+"_"+"ADMIN");
+                dbPurchasing.child(tanggal+"_ADMIN").child("Supplier Contact").setValue(originContact);
+                dbPurchasing.child(tanggal+"_ADMIN").child("Supplier Name").setValue(stockOrigin);
+                dbPurchasing.child(tanggal+"_ADMIN").child("Supplier Address").setValue(originAddress);
+                dbPurchasing.child(tanggal+"_ADMIN").child("Name Item").setValue(value);
+                dbPurchasing.child(tanggal+"_ADMIN").child("Order By").setValue("ADMIN");
+                dbPurchasing.child(tanggal+"_ADMIN").child("Delivery Status").setValue("SUDAH DIKIRIM");
+                dbPurchasing.child(tanggal+"_ADMIN").child("Payment Status").setValue("LUNAS");
+                dbPurchasing.child(tanggal+"_ADMIN").child("Purchase Price").setValue(String.valueOf(total_price));
+                dbPurchasing.child(tanggal+"_ADMIN").child("Date Purchase").setValue(tanggal);
+                dbPurchasing.child(tanggal+"_ADMIN").child("DateKey").setValue(tanggal2);
+                dbPurchasing.child(tanggal+"_ADMIN").child("Amount").setValue(amount);
+                dbPurchasing.child(tanggal+"_ADMIN").child("Transaction Type").setValue("PURCHASING");
 
                 startActivity(new Intent(UpdateStockItemPage.this, StockItemsPage.class));
             }
@@ -166,7 +164,7 @@ public class UpdateStockItemPage extends AppCompatActivity {
 
     private String setDate() {
 //        calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("ddLLLLyyyy HHmmss aaa z");
+        simpleDateFormat = new SimpleDateFormat("ddLLLLyyyy_HHmmss");
         dateTime = simpleDateFormat.format(new Date());
         return  dateTime;
     }

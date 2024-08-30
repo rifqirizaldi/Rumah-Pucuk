@@ -175,28 +175,18 @@ public class SellingPage extends AppCompatActivity {
                 startActivity(new Intent(SellingPage.this, Homepage.class)));
 
 
-        btn_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                total_payment = ed_total_payment.getText().toString();
-                amount = ed_amount_item.getText().toString();
-                total_recevied = ed_recevied_money.getText().toString();
-                processingData(customer_name,item_name,amount,total_payment,payment_status,delivery,total_recevied);
-            }
+        btn_send.setOnClickListener(view -> {
+            total_payment = ed_total_payment.getText().toString();
+            amount = ed_amount_item.getText().toString();
+            total_recevied = ed_recevied_money.getText().toString();
+            processingData(customer_name,item_name,amount,total_payment,payment_status,delivery,total_recevied);
         });
 
-        btn_refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                countPrice(item_name);
-            }
-        });
+        btn_refresh.setOnClickListener(view -> countPrice(item_name));
 
     }
 
-    private void processingData(String customer_name, String item_name,
-                                String amount, String total_payment,
-                                String payment_status, String total_recevied, String delivery) {
+    private void processingData(String customer_name, String item_name, String amount, String total_payment, String payment_status, String delivery, String total_recevied) {
 
        if (customer_name.equals("AAA")){
            Toast.makeText(this, "Data Customer tidak valid", Toast.LENGTH_SHORT).show();
@@ -215,6 +205,7 @@ public class SellingPage extends AppCompatActivity {
            upperName = customer_name.toUpperCase(); String type = "SELLING";
            total_debt = String.valueOf(Integer.parseInt(total_payment) - Integer.parseInt(ed_recevied_money.getText().toString()));
            dbSelling = FirebaseDatabase.getInstance().getReference("sellingActivity");
+           dbSelling.child(tanggal + "_"+ upperName).child("Id").setValue(tanggal+"_"+customer_name);
            dbSelling.child(tanggal + "_"+ upperName).child("Customer Name").setValue(upperName);
            dbSelling.child(tanggal + "_"+ upperName).child("Order Item Name").setValue(item_name.toUpperCase());
            dbSelling.child(tanggal + "_"+ upperName).child("Date").setValue(tanggal);
@@ -224,14 +215,14 @@ public class SellingPage extends AppCompatActivity {
            dbSelling.child(tanggal + "_"+ upperName).child("Status Payment").setValue(payment_status.toUpperCase());
            dbSelling.child(tanggal + "_"+ upperName).child("Transaction Type").setValue(type);
            dbSelling.child(tanggal + "_"+ upperName).child("Delivery Status").setValue(delivery);
-           if (payment_status.equals("LUNAS")){
+           if (this.payment_status.equals("LUNAS")){
                dbSelling.child(tanggal + "_"+ upperName).child("Total Recevied Payment").setValue(total_payment);
                dbSelling.child(tanggal + "_"+ upperName).child("Total Debt").setValue("0");
            }else {
                dbSelling.child(tanggal + "_"+ upperName).child("Total Recevied Payment").setValue(ed_recevied_money.getText().toString());
                dbSelling.child(tanggal + "_"+ upperName).child("Total Debt").setValue(total_debt);
            }
-           updateDataStock(item_name, amount);
+           updateDataStock(this.item_name, this.amount);
            startActivity(new Intent(SellingPage.this, Homepage.class));
        }
 
@@ -241,8 +232,8 @@ public class SellingPage extends AppCompatActivity {
     private void updateDataStock(String item_name, String amount) {
         for (int a = 0 ; a<list_stockItems.size();a++){
             if (list_stockItems.get(a).equals(item_name)){
-                tem_amount = Integer.valueOf(list_amount.get(a));
-                tem_amount -= Integer.valueOf(amount);
+                tem_amount = Integer.parseInt(list_amount.get(a));
+                tem_amount -= Integer.parseInt(amount);
                 dbStockItem = FirebaseDatabase.getInstance().getReference("stockItems");
                 dbStockItem.child(item_name.toUpperCase()).child("Amount").setValue(String.valueOf(tem_amount));
             }
@@ -260,7 +251,7 @@ public class SellingPage extends AppCompatActivity {
     @SuppressLint("SimpleDateFormat")
     private String setDate() {
 //        calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("ddLLLLyyyy HHmmss");
+        simpleDateFormat = new SimpleDateFormat("ddLLLLyyyy_HHmmss");
         dateTime = simpleDateFormat.format(new Date());
         return  dateTime;
     }
@@ -270,13 +261,13 @@ public class SellingPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()){
-                    if (ds.child("Name Item").getValue().toString().equals(item_name)){
-                        tem_price = Integer.valueOf(ds.child("Price").getValue().toString());
+                    if (ds.child("Name Item").getValue(String.class).equals(item_name)){
+                        tem_price = Integer.parseInt(ds.child("Price").getValue().toString());
                         if (ed_amount_item.getText().toString().isEmpty() ||
                                 ed_amount_item.getText().toString().equals("0")){
                             tem_price *= 0;
                         }else {
-                            tem_price *= Integer.valueOf(ed_amount_item.getText().toString());
+                            tem_price *= Integer.parseInt(ed_amount_item.getText().toString());
                         }
                         ed_total_payment.setText(String.valueOf(tem_price));
                     }
@@ -296,7 +287,7 @@ public class SellingPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()){
-                    list_customer.add(data.child("Nama").getValue().toString());
+                    list_customer.add(data.child("Nama").getValue(String.class));
                 }
                 adapter_customer.notifyDataSetChanged();
             }
@@ -312,8 +303,8 @@ public class SellingPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()){
-                    list_stockItems.add(ds.child("Name Item").getValue().toString());
-                    list_amount.add(ds.child("Amount").getValue().toString());
+                    list_stockItems.add(ds.child("Name Item").getValue(String.class));
+                    list_amount.add(ds.child("Amount").getValue(String.class));
                 }
                 adapter_stockItems.notifyDataSetChanged();
             }

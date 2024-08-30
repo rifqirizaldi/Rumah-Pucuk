@@ -2,7 +2,6 @@ package com.example.rumahpucuk.userinterface;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -10,12 +9,8 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.rumahpucuk.R;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -40,19 +35,16 @@ public class AddNewCustomer extends AppCompatActivity {
 
         img_back.setOnClickListener(view ->
                 startActivity(new Intent(AddNewCustomer.this, AddCustomer.class)));
-        btn_kirim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = ed_customer_name.getText().toString();
-                String address = ed_customer_address.getText().toString();
-                String phone = ed_customer_phone.getText().toString();
-                addCustomerData(name,address,phone,database);
-            }
+        btn_kirim.setOnClickListener(view -> {
+            String name = ed_customer_name.getText().toString();
+            String address = ed_customer_address.getText().toString();
+            String phone = ed_customer_phone.getText().toString();
+            addCustomerData(name,address,phone);
         });
 
     }
 
-    private void addCustomerData(String name, String address, String phone, DatabaseReference database) {
+    private void addCustomerData(String name, String address, String phone) {
         if (name.isEmpty() || address.isEmpty() || phone.isEmpty()){
             Toast.makeText(this, "Data belum lengkap", Toast.LENGTH_SHORT).show();
         } else if (name.contains(".")) {

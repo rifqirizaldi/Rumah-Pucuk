@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rumahpucuk.R;
 import com.example.rumahpucuk.adapter.Adapter_rv_stock_items;
-import com.example.rumahpucuk.model_class.Model_history;
 import com.example.rumahpucuk.model_class.Model_stock_items;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

@@ -62,7 +62,8 @@
                 android:background="@color/white"
                 android:hint="Isi Disini"
                 android:textColorHint="#757575"
-                tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
+                android:maxLines="1"
+                tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -85,7 +86,33 @@
                 android:background="@color/white"
                 android:hint="Isi Disini"
                 android:textColorHint="#757575"
+                android:maxLines="1"
                 tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No. Telp / WA Supplier"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                tools:ignore="HardcodedText,VisualLintBounds" />
+
+            <EditText
+                android:id="@+id/ed_origin_contact_from_update_stock"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/white"
+                android:hint="Isi Disini"
+                android:textColorHint="#757575"
+                android:maxLines="1"
+                tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -137,6 +164,7 @@
                 android:inputType="number"
                 android:hint="Isi Disini"
                 android:textColorHint="#757575"
+                android:maxLines="1"
                 tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
 
             <TextView
@@ -161,6 +189,7 @@
                 android:inputType="number"
                 android:hint="Isi Disini"
                 android:textColorHint="#757575"
+                android:maxLines="1"
                 tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
 
             <Button

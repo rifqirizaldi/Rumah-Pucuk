@@ -2,7 +2,6 @@ package com.example.rumahpucuk.userinterface;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,7 +14,6 @@ import com.example.rumahpucuk.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Locale;
 
 public class AddNewTypeItemsPage extends AppCompatActivity {
 
@@ -43,18 +41,15 @@ public class AddNewTypeItemsPage extends AppCompatActivity {
         // btn_send.setOnClickListener(view -> executeData());
 
         //Firebase
-        btn_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                nameItems = ed_name.getText().toString();
-                price = ed_price.getText().toString();
-                amount = ed_amount.getText().toString();
-                executeData(nameItems,price,amount,database);
-            }
+        btn_send.setOnClickListener(view -> {
+            nameItems = ed_name.getText().toString();
+            price = ed_price.getText().toString();
+            amount = ed_amount.getText().toString();
+            executeData(nameItems,price,amount);
         });
     }
 
-    private void executeData(String nameItems, String price, String amount, DatabaseReference database) {
+    private void executeData(String nameItems, String price, String amount) {
         database = FirebaseDatabase.getInstance().getReference("stockItems");
         database.child(nameItems.toUpperCase()).child("Name Item").setValue(nameItems.toUpperCase());
         database.child(nameItems.toUpperCase()).child("Price").setValue(price);

@@ -88,7 +88,7 @@
         android:text="Buat Akun Baru"
         android:textStyle="bold"
         android:layout_marginStart="15dp"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,VisualLintBounds" />
 
     <Space
         android:layout_width="1dp"
@@ -97,12 +97,12 @@
 
     <TextView
         android:id="@+id/txt_reset_password"
-        android:textSize="15sp"
-        android:textColor="#FF0000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reset Password"
-        android:textStyle="bold"
         android:layout_marginStart="15dp"
-        tools:ignore="HardcodedText" />
+        android:text="Reset Password"
+        android:textColor="#FF0000"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,TextContrastCheck,VisualLintBounds" />
 </LinearLayout>

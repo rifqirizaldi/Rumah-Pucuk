@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".userinterface.DetailSellingPage"
+    android:background="@drawable/linear_gradient_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        tools:ignore="UseCompoundDrawables,UselessParent">
+        <ImageView
+            android:id="@+id/img_back_from_detail_selling"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/arrow_back"
+            android:layout_marginStart="20dp"
+            tools:ignore="ContentDescription" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detail Transaksi"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Id Transaksi"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/txt_id_from_detail_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Id Transaksi"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Pelanggan"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/txt_customer_name_from_detail_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cak Toni"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Waktu Transaksi"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/txt_selling_date_from_detail_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="22 August"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Barang Yang Dibeli"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/txt_selling_item_from_detail_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Es teh"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Jumlah Barang Yang Dibeli"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/txt_selling_amount_from_detail_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Harga"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/txt_payment_amount_from_detail_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2345678"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status Pembayaran"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/txt_payment_staus_from_detail_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hutang"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jumlah Yang Sudah Dibayar"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/txt_recevied_payment_from_detail_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12345"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sisa Pembayaran"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/txt_recevied_payment_left_from_detail_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="098765"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status Barang"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/txt_delivery_status_from_detail_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sudah Diambil"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

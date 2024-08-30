@@ -62,7 +62,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/icon_telepon"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/txt_list_number_phone"
@@ -86,27 +86,31 @@
         android:layout_alignParentBottom="true"
         android:background="#808080"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_list_edit_from_customer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="246dp"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/img_list_address"
-        android:text="Edit"
-        tools:ignore="HardcodedText" />
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/icon_edit"
+        android:visibility="gone"
+        tools:ignore="ContentDescription,HardcodedText,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_list_detail_from_customer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/btn_list_edit_from_customer"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="138dp"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/txt_list_number_phone"
-        android:text="Detail"
-        tools:ignore="HardcodedText" />
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/icon_info"
+        android:visibility="gone"
+        tools:ignore="ContentDescription,HardcodedText,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
 </RelativeLayout>

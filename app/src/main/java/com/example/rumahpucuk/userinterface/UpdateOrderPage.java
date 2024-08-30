@@ -93,7 +93,8 @@ public class UpdateOrderPage extends AppCompatActivity {
                         String delivery_status = ds.child("Delivery Status").getValue(String.class);
                         String payment_amount = ds.child("Total Payment").getValue(String.class);
                         String payment_status = ds.child("Status Payment").getValue(String.class);
-                        Model_history model = new Model_history(name_order,payment_amount,delivery_status, payment_status);
+                        String transaction_status = ds.child("Transaction Type").getValue(String.class);
+                        Model_history model = new Model_history(name_order,payment_amount,delivery_status, payment_status, transaction_status);
                         list.add(model);
                     }
                 }

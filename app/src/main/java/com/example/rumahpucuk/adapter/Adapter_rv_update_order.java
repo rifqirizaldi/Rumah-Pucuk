@@ -5,7 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,12 +47,8 @@ public class Adapter_rv_update_order extends RecyclerView.Adapter<Adapter_rv_upd
         holder.delivery_status.setText(model.getDelivery_status());
         holder.payment_status.setText(model.getPayment_status());
         holder.payment_amount.setText(model.getPayment_amount());
-        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "Button yang ditekan", Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.btn_detail.setOnClickListener(view ->
+                Toast.makeText(context, "Button yang ditekan", Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -62,7 +58,7 @@ public class Adapter_rv_update_order extends RecyclerView.Adapter<Adapter_rv_upd
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name_order,payment_amount,payment_status, delivery_status;
-        Button btn_detail;
+        ImageButton btn_detail;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name_order = itemView.findViewById(R.id.txt_list_nama_item_from_update_order);

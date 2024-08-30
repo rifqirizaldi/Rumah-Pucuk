@@ -67,16 +67,17 @@
         android:textSize="16sp"
         tools:ignore="HardcodedText" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_list_detail_from_update_order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/txt_list_nama_item_from_update_order"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="120dp"
         android:layout_marginTop="40dp"
-        android:layout_toEndOf="@+id/txt_list_payment_amount_from_update_order"
-        android:text="Edit"
-        tools:ignore="HardcodedText" />
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/icon_edit"
+        tools:ignore="ContentDescription,HardcodedText,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/img_status_info"
