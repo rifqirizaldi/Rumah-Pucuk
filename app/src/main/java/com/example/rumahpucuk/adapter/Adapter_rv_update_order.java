@@ -2,23 +2,25 @@ package com.example.rumahpucuk.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rumahpucuk.R;
 import com.example.rumahpucuk.model_class.Model_history;
+import com.example.rumahpucuk.userinterface.DetailPurchasingPage;
+import com.example.rumahpucuk.userinterface.EditSellingDataPage;
 
 import java.util.ArrayList;
 
 public class Adapter_rv_update_order extends RecyclerView.Adapter<Adapter_rv_update_order.MyViewHolder>{
-
+    String value;
     Context context;
     ArrayList<Model_history> list;
 
@@ -47,8 +49,19 @@ public class Adapter_rv_update_order extends RecyclerView.Adapter<Adapter_rv_upd
         holder.delivery_status.setText(model.getDelivery_status());
         holder.payment_status.setText(model.getPayment_status());
         holder.payment_amount.setText(model.getPayment_amount());
-        holder.btn_detail.setOnClickListener(view ->
-                Toast.makeText(context, "Button yang ditekan", Toast.LENGTH_SHORT).show());
+        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                value = model.getName_order();
+                moveActivity(view, value);
+            }
+        });
+    }
+
+    private void moveActivity(View view, String value) {
+        Intent intent = new Intent(view.getContext(), EditSellingDataPage.class);
+        intent.putExtra("Id", value);
+        view.getContext().startActivity(intent);
     }
 
     @Override

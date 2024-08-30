@@ -16,6 +16,9 @@
         android:theme="@style/Theme.RumahPucuk"
         tools:targetApi="31">
         <activity
+            android:name=".userinterface.EditSellingDataPage"
+            android:exported="false" />
+        <activity
             android:name=".userinterface.DetailSellingPage"
             android:exported="false" />
         <activity

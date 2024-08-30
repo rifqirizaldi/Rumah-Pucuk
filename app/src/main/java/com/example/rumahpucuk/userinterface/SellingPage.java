@@ -150,7 +150,7 @@ public class SellingPage extends AppCompatActivity {
 
         //Spinner delivery status
         list_delivery_status = new ArrayList<>();
-        list_delivery_status.add("-BELUM MEMILIH");
+        list_delivery_status.add("-BELUM MEMILIH-");
         list_delivery_status.add("BELUM DIKIRIM");
         list_delivery_status.add("SUDAH DIKIRIM");
         list_delivery_status.add("SUDAH DIAMBIL OLEH PEMBELI");
@@ -222,11 +222,9 @@ public class SellingPage extends AppCompatActivity {
                dbSelling.child(tanggal + "_"+ upperName).child("Total Recevied Payment").setValue(ed_recevied_money.getText().toString());
                dbSelling.child(tanggal + "_"+ upperName).child("Total Debt").setValue(total_debt);
            }
-           updateDataStock(this.item_name, this.amount);
+           updateDataStock(item_name, amount);
            startActivity(new Intent(SellingPage.this, Homepage.class));
        }
-
-
     }
 
     private void updateDataStock(String item_name, String amount) {

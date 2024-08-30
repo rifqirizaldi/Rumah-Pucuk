@@ -88,13 +88,12 @@ public class UpdateOrderPage extends AppCompatActivity {
                 for (DataSnapshot ds : snapshot.getChildren()){
                     if (ds.child("Status Payment").getValue(String.class).equals("HUTANG") ||
                     ds.child("Delivery Status").getValue(String.class).equals("BELUM DIKIRIM")){
-                        String name_order = ds.child("Customer Name").getValue(String.class)+"_"+
-                                ds.child("Order Item Name").getValue(String.class);
+                        String name_order = ds.child("Id").getValue(String.class);
                         String delivery_status = ds.child("Delivery Status").getValue(String.class);
                         String payment_amount = ds.child("Total Payment").getValue(String.class);
                         String payment_status = ds.child("Status Payment").getValue(String.class);
                         String transaction_status = ds.child("Transaction Type").getValue(String.class);
-                        Model_history model = new Model_history(name_order,payment_amount,delivery_status, payment_status, transaction_status);
+                        Model_history model = new Model_history(name_order,delivery_status, payment_amount, payment_status, transaction_status);
                         list.add(model);
                     }
                 }
